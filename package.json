@@ -18,11 +18,14 @@
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "@slim-select/vue": "^1.5.0",
+    "caniuse-lite": "^1.0.30001489",
+    "modern-normalize": "^1.1.0",
+    "slim-select": "^2.5.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
-    "parcel": "^2.6.0",
+    "parcel": "^2.9.1",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
   },
