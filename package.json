@@ -21,6 +21,7 @@
     "@slim-select/vue": "^1.5.0",
     "caniuse-lite": "^1.0.30001489",
     "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.6",
     "slim-select": "^2.5.0"
   },
   "devDependencies": {
