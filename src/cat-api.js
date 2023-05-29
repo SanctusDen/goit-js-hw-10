@@ -10,13 +10,13 @@ export function fetchBreeds(keyword){
           keyword
     });
     return fetch(`${BASE_URL}?${params}`)
-    .then((r) => {
-        if (!r.ok) {
-            throw new error(r.status)
-        }
-        return r.json()
-    })
-    .catch((error) => Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!'));
+        .then((r) => {
+            if (!r.ok) {
+                throw new error(r.status)
+            }
+            return r.json()
+        })
+    .catch(() => Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!'));
 };
 
 export function fetchCatByBreed(breedId) {
@@ -27,5 +27,5 @@ export function fetchCatByBreed(breedId) {
         }
         return r.json()
     })
-    .catch((error) => Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!'));
+    .catch(() => console.log());
 };
