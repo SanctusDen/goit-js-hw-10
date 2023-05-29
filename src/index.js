@@ -8,11 +8,6 @@ const select = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const errorEl = document.querySelector('.error');
 
-
-new SlimSelect({
-  select: '#selectElement',
-})
-
 getBreeds('objectBreeds');
 
 function getBreeds(data) {
@@ -25,15 +20,13 @@ function updateSelect(data) {
     fetchBreeds(data).then(data => {
         console.log(data)
         const markupBreeds = data.map(({ id, name }) => {
-            return 
+            return `<li><option value ='${id}'>${name}</option></li>`;
         }).join('');
         select.insertAdjacentHTML('beforeend', markupBreeds);
     });
 };
 
 select.addEventListener("change", onSelected);
-
-
 
 Loading.remove('loader');
 errorEl.style.display = 'none'
@@ -45,18 +38,17 @@ function onSelected(e) {
 
     fetchCatByBreed(breedId).then((data) => {
         console.log(data)
-    const markupCats = data[0].breeds.map(({name, description, temperament})  => {
-           return `<h1>${name}</h1>
+
+        const markupCats = data[0].breeds
+            .map(({ name, description, temperament }) => {
+                return `<h1>${name}</h1>
         <p>${description}</p>
         <p>Temperament: ${temperament}</p>`;
-       })
-       .join('');
-       const markupPicture = data
-           .map(({ url }) => {
+        }).join('');
+        
+       const markupPicture = data[0].breeds.map(({url}) => {
          return `<img src='${url}' width='600'>`
-           }
-         )
-      .join('');
+        }).join('');
         catInfo.insertAdjacentHTML('beforeend', markupPicture);
         catInfo.insertAdjacentHTML('beforeend', markupCats);
     })
