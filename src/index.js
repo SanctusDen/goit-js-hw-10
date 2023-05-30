@@ -12,15 +12,14 @@ updateSelect();
 
 function updateSelect(data) {
     fetchBreeds(data).then(data => {
-        console.log(data)
         const markupBreeds = data.map(({id, name }) => {
             return `<option value ='${id}'>${name}</option>`;
-        }).join('');
+        }).join('')
         select.insertAdjacentHTML('beforeend', markupBreeds);
         new SlimSelect({
             select: '#selectElement'
         });
-    });
+    }).catch(() => Notify.failure('Oops! Something went wrong! Try reloading the page!'))
 };
 
 select.addEventListener("change", onSelected);
@@ -34,7 +33,6 @@ function onSelected(e) {
     let breedId = e.target.value;
 
     fetchCatByBreed(breedId).then((data) => {
-        console.log(data)
 
         const markupCats = data[0].breeds
             .map(({ name, description, temperament }) => {
@@ -48,6 +46,7 @@ function onSelected(e) {
         catInfo.insertAdjacentHTML('afterbegin', markupCats);
         catInfo.insertAdjacentHTML('beforeend', markupPicture);
     })
+    .catch(() => Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!'))
     .finally(() => {
         Loading.remove();
     });
