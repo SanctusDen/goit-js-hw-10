@@ -13,7 +13,7 @@ updateSelect();
 function updateSelect(data) {
     fetchBreeds(data).then(data => {
         console.log(data)
-        const markupBreeds = data.map(({ id, name }) => {
+        const markupBreeds = data.map(({id, name }) => {
             return `<option value ='${id}'>${name}</option>`;
         }).join('');
         select.insertAdjacentHTML('beforeend', markupBreeds);
@@ -36,18 +36,16 @@ function onSelected(e) {
     fetchCatByBreed(breedId).then((data) => {
         console.log(data)
 
-        const markupCats = data
+        const markupCats = data[0].breeds
             .map(({ name, description, temperament }) => {
-            return `<h1>${idname}</h1>
-            <p>${description}</p>
-            <p>Temperament: ${temperament}</p>`;
+            return `<h1>${name}</h1><p>${description}</p><p>Temperament: ${temperament}</p>`;
         }).join('');
 
         const markupPicture = data.map(({url}) => {
-            return `<img src='${url}' width='600'>`
+            return `<img src='${url}' width='500'>`
         }).join('');
 
-        catInfo.insertAdjacentHTML('beforeend', markupCats);
+        catInfo.insertAdjacentHTML('afterbegin', markupCats);
         catInfo.insertAdjacentHTML('beforeend', markupPicture);
     })
     .finally(() => {
@@ -55,8 +53,3 @@ function onSelected(e) {
     });
     catInfo.innerHTML = '';
 };
-
-// loader.style.display = 'block'
-// Loading.dots(loader.style.display = 'none');
-// loader.classList.add('unvisible');
-// .finaly(() => loader.classList.add('unvisible'));

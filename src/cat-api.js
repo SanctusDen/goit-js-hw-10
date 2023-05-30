@@ -4,10 +4,9 @@ const BASE_URL = 'https://api.thecatapi.com/v1/breeds';
 const API = "live_XTVqmtwZCRUux0xyyuBoz9aUlTLhAmYM8XZI7lwTTnN9wNP285Bwa4shn7cLcow8";
 const CAT_SEARCH = 'https://api.thecatapi.com/v1/images/search';
 
-export function fetchBreeds(keyword){
+export function fetchBreeds(){
       const params = new URLSearchParams({
           apikey: API,
-          keyword
     });
     return fetch(`${BASE_URL}?${params}`)
         .then((r) => {
